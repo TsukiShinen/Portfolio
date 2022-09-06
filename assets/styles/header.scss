@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.clock {
+  color: white;
+  font-size: 48px;
+  margin: 16px;
+}
+
+@media screen and (max-width: 700px) {
+  .clock {
+    display: none;
+  }
+}

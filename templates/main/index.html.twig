@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <nav {{ stimulus_controller('menu') }}>
+        <div class="menu-layer menu-layer-1" id="menu-layer-1">
+            <input class="menu-btn" type="checkbox" id="btn-menu" data-show="menu-layer-2" data-hide="" data-uncheck=""/>
+            <label for="btn-menu">
+                <i class="fa-solid fa-user"></i>
+            </label>
+        </div>
+        <div class="menu-layer menu-layer-2" id="menu-layer-2">
+            <ul>
+                <div class="arrow"></div>
+                {% for page in pages %}
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-{{ page }}" data-content="{{ page }}" data-src="{{ url('ajax_main_'~page) }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-{{ page }}">
+                        <p>{{ page }}</p>
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="root">
+        <div class="header">
+            {% include'main/healthBar.html.twig' with { "name": "Nolan", "level" : 0, "health": 10, "maxHealth": 10 } %}
+
+            <div class="clock" {{ stimulus_controller('clock') }}></div>
+        </div>
+        <div id="content"></div>
+    </div>
+{% endblock %}

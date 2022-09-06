@@ -1,0 +1,51 @@
+$base-color: rgb(50, 50, 50);
+$hover-color: rgb(71, 142, 214);
+$white: rgb(251, 251, 251);
+
+@import "healthBar";
+@import "header";
+@import "menu";
+@import "scrollbar";
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Nova Square', cursive;
+    color: $white;
+    caret-color: transparent;
+}
+
+body {
+    background: #fff url("../../public/images/BG.jpg") center center/cover no-repeat;
+}
+
+.root {
+    height: 100%;
+    width: 100%;
+}
+
+#content {
+    display: none;
+    margin: 16px auto;
+    background-color: $base-color;
+    opacity: 0.90;
+    align-self: center;
+    height: calc(100% - 150px);
+    max-width: 900px;
+    overflow-y: scroll;
+    box-shadow: 0 0 8px black;
+
+    .title {
+        text-align: center;
+        box-shadow: 0 16px 48px black;
+        padding: 24px 0;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    .base {
+        margin: 32px 24px;
+    }
+}

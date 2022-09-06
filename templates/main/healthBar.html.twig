@@ -1,0 +1,14 @@
+<div class="healthbar">
+    <div class="main-container">
+        <div class="character-name">{{ name }}</div>
+        <div class="health-bar--outline">
+            <div class="health-bar--border">
+                <div class="health-bar--background">
+                    <div class="health-bar--health" style="--health: {{ health }}; --max-health: {{ maxHealth }}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="health-indicator" style="--health: '{{ health }}'; --max-health: '{{ maxHealth }}'">/</div>
+    <div class="character-level" style="--level: '{{ level }}'">LV:</div>
+</div>
