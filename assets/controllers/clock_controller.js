@@ -13,7 +13,10 @@ export default class extends Controller {
     connect() {
         setInterval(() => {
             let date = new Date();
-            this.element.textContent = date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds()
+            let h = date.getHours() < 10 ? "0"+date.getHours() : date.getHours()
+            let m = date.getMinutes() < 10 ? "0"+date.getMinutes() : date.getMinutes()
+            let s = date.getSeconds() < 10 ? "0"+date.getSeconds() : date.getSeconds()
+            this.element.textContent = h + " : " + m + " : " + s
         }, 1000)
     }
 }

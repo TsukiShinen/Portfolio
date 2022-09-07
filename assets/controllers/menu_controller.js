@@ -13,9 +13,21 @@ export default class extends Controller {
                         $("#content").html(data["html"])
                     }
                 })
+
+                let hoverToRemove = $('li.forced-hover')
+                if (hoverToRemove.length > 0) {
+                    hoverToRemove[0].classList.remove("forced-hover")
+                }
+                e.currentTarget.closest("li").classList.add("forced-hover");
             }
             else {
                 $("#" + e.currentTarget.dataset.show).css("display", e.currentTarget.checked ? "block" : "none");
+                if (e.currentTarget.checked) {
+                    e.currentTarget.closest("li").classList.add("forced-hover");
+                }
+                else {
+                    e.currentTarget.closest("li").classList.remove("forced-hover");
+                }
             }
 
             if (e.currentTarget.dataset.hide === "") return
