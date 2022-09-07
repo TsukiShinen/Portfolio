@@ -12,15 +12,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(): Response
     {
-        $pages = ["character",
-                    "inventory",
-                    "skills",
-                    "quest",
-                    "contact",];
-
-        return $this->render('main/index.html.twig', [
-            'pages' => $pages,
-        ]);
+        return $this->render('main/index.html.twig');
     }
     #[Route('/character', name: 'ajax_main_character', methods: "POST")]
     public function character(): JsonResponse {

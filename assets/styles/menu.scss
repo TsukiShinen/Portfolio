@@ -16,6 +16,12 @@ nav {
       display: none;
     }
 
+    ul {
+      position: relative;
+      list-style: none;
+      padding: 0;
+    }
+
     label {
       width: 100%;
       text-transform: capitalize;
@@ -25,19 +31,55 @@ nav {
         height: 64px;
       }
     }
+  }
+
+  .menu-layer-1 {
+    display: block;
+    padding: 8px;
+
+    ul {
+      li {
+        display: flex;
+        margin: 16px 0;
+        text-align: center;
+        vertical-align: middle;
+        width: 80px;
+        height: 80px;
+
+        label, i {
+          margin: auto;
+        }
+      }
+
+      li:hover {
+        background-color: $hover-color;
+        width: 80px;
+        height: 80px;
+        border-radius: 64px;
+      }
+
+      // TODO: CHECKED KEEP THE HOVER
+      // TODO: ADD HALO ON HOVER
+      li::after {
+        border: 16px solid black;
+      }
+    }
+  }
+
+  .menu-layer-2 {
+    display: none;
 
     ul {
       position: relative;
       list-style: none;
       padding: 0;
-      width: 128px;
+      width: 150px;
 
       .arrow {
         position: absolute;
-        top: 13px;
         left: -16px;
         width: 128px;
-        height: 250px;
+        height: 100%;
         clip-path: polygon(8% 47%, 8% 0, 10% 0, 10% 100%, 8% 100%, 8% 53%, 0% 50%);
         background-color: $white;
       }
@@ -47,6 +89,19 @@ nav {
         margin: 2px;
         padding-left: 8px;
         display: flex;
+
+        label {
+          padding: 8px 0;
+
+          i {
+            width: 32px;
+            height: 32px;
+            font-size: 24px;
+            margin-left: 3px;
+
+            color: white;
+          }
+        }
       }
 
 
@@ -54,14 +109,5 @@ nav {
         background-color: $hover-color;
       }
     }
-  }
-
-  .menu-layer-1 {
-    display: block;
-    padding: 8px;
-  }
-
-  .menu-layer-2 {
-    display: none;
   }
 }
