@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ProjectsCategories;
+use App\Entity\ProjectCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ProjectsCategories>
+ * @extends ServiceEntityRepository<ProjectCategory>
  *
- * @method ProjectsCategories|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProjectsCategories|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProjectsCategories[]    findAll()
- * @method ProjectsCategories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ProjectCategory|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ProjectCategory|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ProjectCategory[]    findAll()
+ * @method ProjectCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProjectsCategoriesRepository extends ServiceEntityRepository
+class ProjectCategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ProjectsCategories::class);
+        parent::__construct($registry, ProjectCategory::class);
     }
 
-    public function add(ProjectsCategories $entity, bool $flush = false): void
+    public function add(ProjectCategory $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ProjectsCategoriesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ProjectsCategories $entity, bool $flush = false): void
+    public function remove(ProjectCategory $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ProjectsCategoriesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ProjectsCategories[] Returns an array of ProjectsCategories objects
+//     * @return ProjectCategory[] Returns an array of ProjectCategory objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ProjectsCategoriesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ProjectsCategories
+//    public function findOneBySomeField($value): ?ProjectCategory
 //    {
 //        return $this->createQueryBuilder('p')
 //            ->andWhere('p.exampleField = :val')

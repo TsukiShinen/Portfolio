@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Experience;
+use App\Entity\Exp;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Experience>
+ * @extends ServiceEntityRepository<Exp>
  *
- * @method Experience|null find($id, $lockMode = null, $lockVersion = null)
- * @method Experience|null findOneBy(array $criteria, array $orderBy = null)
- * @method Experience[]    findAll()
- * @method Experience[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Exp|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Exp|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Exp[]    findAll()
+ * @method Exp[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ExperienceRepository extends ServiceEntityRepository
+class ExpRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Experience::class);
+        parent::__construct($registry, Exp::class);
     }
 
-    public function add(Experience $entity, bool $flush = false): void
+    public function add(Exp $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ExperienceRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Experience $entity, bool $flush = false): void
+    public function remove(Exp $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ExperienceRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Experience[] Returns an array of Experience objects
+//     * @return Exp[] Returns an array of Exp objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ExperienceRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Experience
+//    public function findOneBySomeField($value): ?Exp
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

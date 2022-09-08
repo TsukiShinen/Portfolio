@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectsCategoriesRepository;
+use App\Repository\ProjectCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProjectsCategoriesRepository::class)]
-class ProjectsCategories
+#[ORM\Entity(repositoryClass: ProjectCategoryRepository::class)]
+class ProjectCategory
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class ProjectsCategories
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Projects::class, mappedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'category')]
     private Collection $projects;
 
     public function __construct()
@@ -44,14 +44,14 @@ class ProjectsCategories
     }
 
     /**
-     * @return Collection<int, Projects>
+     * @return Collection<int, Project>
      */
     public function getProjects(): Collection
     {
         return $this->projects;
     }
 
-    public function addProject(Projects $project): self
+    public function addProject(Project $project): self
     {
         if (!$this->projects->contains($project)) {
             $this->projects->add($project);
@@ -61,7 +61,7 @@ class ProjectsCategories
         return $this;
     }
 
-    public function removeProject(Projects $project): self
+    public function removeProject(Project $project): self
     {
         if ($this->projects->removeElement($project)) {
             $project->removeCategory($this);

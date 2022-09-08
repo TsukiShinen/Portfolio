@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SkillRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,6 @@ class MainController extends AbstractController
     }
     #[Route('/character', name: 'ajax_main_character', methods: "POST")]
     public function character(): JsonResponse {
-
         $response = [
             "code" => 200,
             "html" => $this->render('pages/character.html.twig')->getContent()
@@ -37,11 +37,15 @@ class MainController extends AbstractController
     }
 
     #[Route('/skills', name: 'ajax_main_skills', methods: "POST")]
-    public function skills(): JsonResponse {
+    public function skills(SkillRepository $skillRepository): JsonResponse {
 
         $response = [
             "code" => 200,
-            "html" => $this->render('pages/skills.html.twig')->getContent()
+            "html" => $this->render('pages/skills.html.twig', [
+                "skills" => $skillRepository->getSkillTable(),
+                "baseSkills" => $skillRepository->getBaseSkill(),
+                "passiveSkills" => $skillRepository->getPassiveSkill()
+            ])->getContent()
         ];
 
         return new JsonResponse($response);
