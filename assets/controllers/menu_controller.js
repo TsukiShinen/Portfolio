@@ -10,7 +10,6 @@ export default class extends Controller {
                     type: "POST",
                     url: e.currentTarget.dataset.src,
                     success: function (data) {
-                        console.log(data)
                         $("#content").html(data["html"])
                     }
                 })
