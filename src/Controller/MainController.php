@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ExpRepository;
 use App\Repository\SkillRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -52,11 +53,14 @@ class MainController extends AbstractController
     }
 
     #[Route('/quest', name: 'ajax_main_quest', methods: "POST")]
-    public function quest(): JsonResponse {
+    public function quest(ExpRepository $expRepository): JsonResponse {
 
         $response = [
             "code" => 200,
-            "html" => $this->render('pages/quest.html.twig')->getContent()
+            "html" => $this->render('pages/quest.html.twig', [
+                "currentQuests" => $expRepository->findBy(["isFinished" => false], ["start" => "ASC"]),
+                "finishedQuests" => $expRepository->findBy(["isFinished" => true], ["end" => "ASC"]),
+            ])->getContent()
         ];
 
         return new JsonResponse($response);

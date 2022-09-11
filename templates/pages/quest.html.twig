@@ -5,4 +5,8 @@
 {% endblock %}
 
 {% block Base %}
+    <div class="quests">
+        {% include("./pages/elements/QuestCard.html.twig") with {'quests':currentQuests} %}
+        {% include("./pages/elements/QuestCard.html.twig") with {'quests':finishedQuests} %}
+    </div>
 {% endblock %}

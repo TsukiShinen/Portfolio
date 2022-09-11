@@ -1,0 +1,49 @@
+.quests {
+  overflow-y: scroll;
+  height: 650px;
+  width: 256px;
+  position: fixed;
+  .quest {
+    background-color: $white;
+    color: black;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    margin-bottom: 8px;
+
+    .quest-header {
+      display: flex;
+      justify-content: space-between;
+
+      .category {
+        font-size: 12px;
+      }
+    }
+
+    .quest-title {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        width: calc(100% - 50px);
+        margin-right: 0;
+        margin-top: 0;
+      }
+
+      .check {
+        color: green;
+        font-size: 25px;
+        margin: auto;
+      }
+    }
+
+    .quest-footer {
+      font-size: 14px;
+      margin-top: 0;
+    }
+  }
+
+  .quest:hover {
+    background-color: $hover-color;
+  }
+}
