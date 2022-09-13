@@ -5,8 +5,14 @@
 {% endblock %}
 
 {% block Base %}
-    <div class="quests">
-        {% include("./pages/elements/QuestCard.html.twig") with {'quests':currentQuests} %}
-        {% include("./pages/elements/QuestCard.html.twig") with {'quests':finishedQuests} %}
+    <div class="quests" {{ stimulus_controller('menu_quest') }}>
+        <div class="quests-menu">
+            {% include("./pages/elements/QuestCard.html.twig") with {'quests':currentQuests} %}
+            {% include("./pages/elements/QuestCard.html.twig") with {'quests':finishedQuests} %}
+        </div>
+        <div class="quests-content">
+            <h2 class="quest-name"></h2>
+            <div class="quest-content"></div>
+        </div>
     </div>
 {% endblock %}

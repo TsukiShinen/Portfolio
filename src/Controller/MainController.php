@@ -7,6 +7,7 @@ use App\Repository\SkillRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -58,7 +59,7 @@ class MainController extends AbstractController
         $response = [
             "code" => 200,
             "html" => $this->render('pages/quest.html.twig', [
-                "currentQuests" => $expRepository->findBy(["isFinished" => false], ["start" => "ASC"]),
+                "currentQuests" => $expRepository->findBy(["isFinished" => false], ["start" => "DESC"]),
                 "finishedQuests" => $expRepository->findBy(["isFinished" => true], ["end" => "ASC"]),
             ])->getContent()
         ];
@@ -71,6 +72,21 @@ class MainController extends AbstractController
 
         $response = [
             "code" => 200,
+            "html" => $this->render('pages/contact.html.twig')->getContent()
+        ];
+
+        return new JsonResponse($response);
+    }
+
+    #[Route('/quest-content', name: 'ajax_main_quest_content', methods: "POST")]
+    public function questContent(Request $request, ExpRepository $expRepository): JsonResponse {
+        $id = $request->get("id");
+        $exp = $expRepository->find($id);
+
+        $response = [
+            "code" => 200,
+            "name" => $exp->getName(),
+            "content" => $exp->getContent(),
             "html" => $this->render('pages/contact.html.twig')->getContent()
         ];
 

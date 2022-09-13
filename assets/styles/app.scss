@@ -7,6 +7,8 @@ $white: rgb(251, 251, 251);
 @import "menu";
 @import "scrollbar";
 
+// TODO: Regler les probleme de size des elements des pages
+
 html, body {
     margin: 0;
     height: 100%;
@@ -24,6 +26,10 @@ body {
     width: 100%;
 }
 
+a {
+    color: $white;
+}
+
 #content {
     display: none;
     margin: 16px auto;
@@ -32,7 +38,6 @@ body {
     align-self: center;
     height: calc(100% - 150px);
     max-width: 900px;
-    overflow-y: scroll;
     box-shadow: 0 0 8px black;
 
     .title {
@@ -58,5 +63,6 @@ body {
 
         @import "skill";
         @import "quest";
+        @import "character";
     }
 }

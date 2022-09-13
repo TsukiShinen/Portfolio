@@ -1,5 +1,5 @@
 {% for quest in quests %}
-    <div class="quest">
+    <div class="quest" data-id="{{ quest.id }}" data-src="{{ url("ajax_main_quest_content") }}">
         <div class="quest-header">
             <span class="category">{{ quest.category.name }}</span>
         </div>
