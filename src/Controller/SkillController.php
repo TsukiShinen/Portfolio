@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Skill;
 use App\Form\SkillType;
+use App\Repository\ImageRepository;
 use App\Repository\SkillRepository;
 use App\Service\FileUploader;
-use Deployer\Component\PharUpdate\Exception\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/skill')]
+#[Route('/admin/skill')]
 class SkillController extends AbstractController
 {
     #[Route('/', name: 'app_skill_index', methods: ['GET'])]
@@ -26,20 +26,24 @@ class SkillController extends AbstractController
     }
 
     #[Route('/new', name: 'app_skill_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FileUploader $fileUploader, SkillRepository $skillRepository): Response
+    public function new(Request $request, FileUploader $fileUploader, SkillRepository $skillRepository, ImageRepository $imageRepository): Response
     {
         $skill = new Skill();
         $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $iconImage = $form->get("icon")->getData();
+            $image = $form->get('icon')->getData();
+            if ($image) {
+                $imageName = $fileUploader->uploadImage($image);
 
-            if ($iconImage) {
-                $iconImageName = $fileUploader->upload($iconImage);
-                $skill->setIcon($iconImageName);
+                $newImage = new Image();
+                $newImage->setFileName($imageName);
+
+                $skill->setIcon($newImage);
+
+                $imageRepository->add($newImage);
             }
-
             $skillRepository->add($skill, true);
 
             return $this->redirectToRoute('app_skill_index', [], Response::HTTP_SEE_OTHER);
@@ -60,15 +64,23 @@ class SkillController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_skill_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Skill $skill, SkillRepository $skillRepository): Response
+    public function edit(Request $request, FileUploader $fileUploader, Skill $skill, SkillRepository $skillRepository, ImageRepository $imageRepository): Response
     {
-        $skill->setIcon(
-            new File($this->getParameter('images_directory').'/'.$skill->getIcon())
-        );
         $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('icon')->getData();
+            if ($image) {
+                $imageName = $fileUploader->uploadImage($image);
+
+                $newImage = new Image();
+                $newImage->setFileName($imageName);
+
+                $skill->setIcon($newImage);
+
+                $imageRepository->add($newImage);
+            }
             $skillRepository->add($skill, true);
 
             return $this->redirectToRoute('app_skill_index', [], Response::HTTP_SEE_OTHER);
@@ -88,5 +100,25 @@ class SkillController extends AbstractController
         }
 
         return $this->redirectToRoute('app_skill_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/remove/icon/{id}', name: 'app_skill_icon_delete', methods: ["DELETE"])]
+    public function deleteImage(Image $image, Request $request, SkillRepository $skillRepository, ImageRepository $imageRepository): JsonResponse
+    {
+        $token = $request->get("token");
+        $skillId = $request->get("skillId");
+        dump($skillId);
+
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $token))
+        {
+            $skillRepository->find($skillId)->setIcon(null);
+            $nom = $image->getFileName();
+            unlink($this->getParameter('images_directory').'/'.$nom);
+            $imageRepository->remove($image, true);
+            return new JsonResponse(['success' => 1]);
+        }
+        else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
     }
 }
