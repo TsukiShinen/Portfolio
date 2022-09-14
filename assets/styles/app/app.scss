@@ -2,10 +2,10 @@ $base-color: rgb(50, 50, 50);
 $hover-color: rgb(71, 142, 214);
 $white: rgb(251, 251, 251);
 
-@import "healthBar";
-@import "header";
-@import "menu";
-@import "scrollbar";
+@import "assets/styles/app/healthBar";
+@import "assets/styles/app/header";
+@import "assets/styles/app/menu";
+@import "assets/styles/app/scrollbar";
 
 // TODO: Regler les probleme de size des elements des pages
 
@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-    background: #fff url("../../public/images/BG.jpg") center center/cover no-repeat;
+    background: #fff url("../../../public/images/BG.jpg") center center/cover no-repeat;
 }
 
 .root {
@@ -61,8 +61,9 @@ a {
             margin-bottom: 32px;
         }
 
-        @import "skill";
-        @import "quest";
-        @import "character";
+        @import "assets/styles/app/skill";
+        @import "assets/styles/app/quest";
+        @import "assets/styles/app/character";
+        @import "assets/styles/app/inventory";
     }
 }

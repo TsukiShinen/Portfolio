@@ -1,0 +1,19 @@
+{% extends 'pages/page-base.html.twig' %}
+
+{% block Title %}
+    <h1>{{ project.name }}</h1>
+{% endblock %}
+
+{% block Base %}
+    <div class="project">
+        <div class="project-content">
+            {{ project.content|raw }}
+        </div>
+        <div class="project-images">
+            <img src="{{ asset("images/"~project.image) }}"  alt="{{ project.image }}"/>
+            {% for img in project.otherImages|split(',') %}
+                <img src="{{ asset("images/"~img) }}"  alt="{{ img }}"/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

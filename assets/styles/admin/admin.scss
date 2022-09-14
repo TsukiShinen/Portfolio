@@ -1,0 +1,27 @@
+$base-color: rgb(50, 50, 50);
+$hover-color: rgb(71, 142, 214);
+$white: rgb(251, 251, 251);
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $base-color;
+}
+
+nav {
+  padding: 24px;
+  box-shadow: 0 16px 48px black;
+
+  a {
+    cursor: pointer;
+    background-color: $white;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  a:hover {
+    background-color: $hover-color;
+  }
+}

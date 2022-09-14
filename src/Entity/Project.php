@@ -22,6 +22,9 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $otherImages = null;
+
     #[ORM\Column(length: 4096)]
     private ?string $content = null;
 
@@ -65,6 +68,18 @@ class Project
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getOtherImages(): ?string
+    {
+        return $this->otherImages;
+    }
+
+    public function setOtherImages(string $image): self
+    {
+        $this->otherImages = $image;
 
         return $this;
     }

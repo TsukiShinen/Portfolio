@@ -6,19 +6,19 @@
 
 {% block Base %}
     <div class="skill">
-        <div class="active-skill">
+        <div class="active-skill" {{ stimulus_controller("click_skills") }}>
             <h2>Active</h2>
             <table>
                 {% for baseSkill in baseSkills %}
                     <tr>
                         <th>
-                            <div class="skill-icon first-skill">
+                            <div class="skill-icon first-skill" data-src="{{ url("ajax_main_inventory") }}" data-value="{{ baseSkill.name }}">
                                 <img alt="{{ baseSkill.name }}" src="{{ asset('images/'~baseSkill.icon) }}" title="{{ baseSkill.name }}">
                             </div>
                         </th>
                         <td>
                             {% for skill in skills[baseSkill.name] %}
-                                <div class="skill-icon">
+                                <div class="skill-icon" data-src="{{ url("ajax_main_inventory") }}" data-value="{{ skill.name }}">
                                     <img alt="{{ skill.name }}" src="{{ asset('images/'~skill.icon) }}" title="{{ skill.name }}">
                                 </div>
                             {% endfor %}

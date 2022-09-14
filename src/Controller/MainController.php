@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ExpRepository;
+use App\Repository\ProjectRepository;
 use App\Repository\SkillRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,11 +29,36 @@ class MainController extends AbstractController
     }
 
     #[Route('/inventory', name: 'ajax_main_inventory', methods: "POST")]
-    public function inventory(): JsonResponse {
+    public function inventory(Request $request, ProjectRepository $projectRepository): JsonResponse {
+        $search = $request->get("search");
+
+        $projects = null;
+        if ($search == "") {
+            $projects = $projectRepository->findAll();
+        } else {
+            $projects = $projectRepository->getSearchedProject($search);
+        }
 
         $response = [
             "code" => 200,
-            "html" => $this->render('pages/inventory.html.twig')->getContent()
+            "html" => $this->render('pages/inventory.html.twig', [
+                "projects" => $projects,
+                "search" => $search
+            ])->getContent()
+        ];
+
+        return new JsonResponse($response);
+    }
+
+    #[Route('/project', name: 'ajax_main_project', methods: "POST")]
+    public function project(Request $request, ProjectRepository $projectRepository): JsonResponse {
+        $id = $request->get("id");
+
+        $response = [
+            "code" => 200,
+            "html" => $this->render('pages/project.html.twig', [
+                'project' => $projectRepository->find($id)
+            ])->getContent()
         ];
 
         return new JsonResponse($response);
@@ -88,6 +114,27 @@ class MainController extends AbstractController
             "name" => $exp->getName(),
             "content" => $exp->getContent(),
             "html" => $this->render('pages/contact.html.twig')->getContent()
+        ];
+
+        return new JsonResponse($response);
+    }
+
+    #[Route('/inventory-search', name: 'ajax_main_inventory_search', methods: "POST")]
+    public function inventorySearch(Request $request, ProjectRepository $projectRepository): JsonResponse {
+        $search = $request->get("search");
+
+        $projects = null;
+        if ($search == "") {
+            $projects = $projectRepository->findAll();
+        } else {
+            $projects = $projectRepository->getSearchedProject($search);
+        }
+
+        $response = [
+            "code" => 200,
+            "html" => $this->render('pages/elements/Project.html.twig', [
+                'projects' => $projects
+            ])->getContent()
         ];
 
         return new JsonResponse($response);

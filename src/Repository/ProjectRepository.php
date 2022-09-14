@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Project;
+use App\Entity\ProjectCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,15 @@ class ProjectRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getSearchedProject(string $search) {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.category', 'c')
+            ->innerJoin('p.relatedSkills', 's')
+            ->where('p.name LIKE :search OR c.name LIKE :search OR s.name LIKE :search')
+            ->setParameter(':search', '%'.$search.'%')
+            ->getQuery()->execute();
     }
 
 //    /**

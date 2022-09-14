@@ -18,11 +18,8 @@ class Skill
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?string $icon;
-
-    #[ORM\Column]
-    private ?int $level = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $icon;
 
     #[ORM\Column]
     private ?bool $isPassive = null;
@@ -58,18 +55,6 @@ class Skill
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getLevel(): ?int
-    {
-        return $this->level;
-    }
-
-    public function setLevel(int $level): self
-    {
-        $this->level = $level;
 
         return $this;
     }
@@ -167,15 +152,20 @@ class Skill
         return $this;
     }
 
-    public function getIcon(): ?string
+    public function getIcon()
     {
         return $this->icon;
     }
 
-    public function setIcon(string $icon): self
+    public function setIcon($icon): self
     {
         $this->icon = $icon;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
