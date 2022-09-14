@@ -19,11 +19,12 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    #[ORM\ManyToOne(targetEntity: Image::class)]
+    private ?Image $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $otherImages = null;
+    #[ORM\ManyToMany(targetEntity: Image::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private Collection $otherImages;
 
     #[ORM\Column(length: 4096)]
     private ?string $content = null;
@@ -41,6 +42,7 @@ class Project
     {
         $this->category = new ArrayCollection();
         $this->relatedSkills = new ArrayCollection();
+        $this->otherImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,30 +58,6 @@ class Project
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getOtherImages(): ?string
-    {
-        return $this->otherImages;
-    }
-
-    public function setOtherImages(string $image): self
-    {
-        $this->otherImages = $image;
 
         return $this;
     }
@@ -152,6 +130,34 @@ class Project
     public function removeRelatedSkill(Skill $relatedSkill): self
     {
         $this->relatedSkills->removeElement($relatedSkill);
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function addOtherImage(Image $otherImage): self
+    {
+        if (!$this->otherImages->contains($otherImage)) {
+            $this->otherImages->add($otherImage);
+        }
+
+        return $this;
+    }
+
+    public function removeOtherImage(Image $otherImage): self
+    {
+        $this->otherImages->removeElement($otherImage);
 
         return $this;
     }

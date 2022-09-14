@@ -1,6 +1,8 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Image;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -16,19 +18,39 @@ class FileUploader
         $this->slugger = $slugger;
     }
 
-    public function upload(UploadedFile $file)
+    public function uploadImage(UploadedFile $image)
     {
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+        $fileName = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $fileName);
+            $image->move($this->getTargetDirectory(), $fileName);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
 
         return $fileName;
+    }
+
+    public function uploadImages(ArrayCollection $images)
+    {
+        $newImages = new ArrayCollection();
+        foreach($images as $image) {
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $this->slugger->slug($originalFilename);
+            $fileName = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+
+            try {
+                $image->move($this->getTargetDirectory(), $fileName);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            $newImages->add($fileName);
+        }
+
+        return $newImages;
     }
 
     public function getTargetDirectory()

@@ -18,8 +18,9 @@ class Skill
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
-    private $icon;
+    #[ORM\ManyToOne(targetEntity: Image::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Image $icon;
 
     #[ORM\Column]
     private ?bool $isPassive = null;
@@ -152,12 +153,12 @@ class Skill
         return $this;
     }
 
-    public function getIcon()
+    public function getIcon(): ?Image
     {
         return $this->icon;
     }
 
-    public function setIcon($icon): self
+    public function setIcon(?Image $icon): self
     {
         $this->icon = $icon;
 

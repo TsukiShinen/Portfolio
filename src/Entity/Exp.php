@@ -17,9 +17,6 @@ class Exp
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $icon = null;
-
     #[ORM\Column(length: 4096)]
     private ?string $content = null;
 
@@ -77,18 +74,6 @@ class Exp
     public function setCategory(?ExperienceCategory $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): self
-    {
-        $this->icon = $icon;
 
         return $this;
     }
