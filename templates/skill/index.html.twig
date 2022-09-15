@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Skill index{% endblock %}
 
@@ -23,14 +23,13 @@
                 <td>{{ skill.id }}</td>
                 <td>{{ skill.name }}</td>
                 <td>{% if skill.icon != null %}
-                    <img class="" src="{{ asset("images/"~skill.icon.fileName) }}" alt="{{ skill.icon.fileName }}" width="64px"/></td>
+                    <img class="icon" src="{{ asset("images/"~skill.icon.fileName) }}" alt="{{ skill.icon.fileName }}"/></td>
                 {% endif %}
                 <td>{{ skill.isPassive ? 'Yes' : 'No' }}</td>
                 <td>{{ skill.isBase ? 'Yes' : 'No' }}</td>
                 <td>{{ skill.parent }}</td>
                 <td>
-                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">show</a>
-                    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">edit</a>
+                    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}" class="edit">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_skill_new') }}">Create new</a>
+    <a href="{{ path('app_skill_new') }}" class="new">Create new</a>
 {% endblock %}

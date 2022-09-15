@@ -19,9 +19,6 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: Image::class)]
-    private ?Image $image = null;
-
     #[ORM\ManyToMany(targetEntity: Image::class)]
     #[ORM\JoinColumn(nullable: true)]
     private Collection $otherImages;
@@ -134,18 +131,6 @@ class Project
         return $this;
     }
 
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function addOtherImage(Image $otherImage): self
     {
         if (!$this->otherImages->contains($otherImage)) {
@@ -155,10 +140,21 @@ class Project
         return $this;
     }
 
+
+    public function getOtherImages(): Collection
+    {
+        return $this->otherImages;
+    }
+
     public function removeOtherImage(Image $otherImage): self
     {
         $this->otherImages->removeElement($otherImage);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

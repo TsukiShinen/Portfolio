@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% if app.request.attributes.get('_route') == 'app_project_edit' %}
+        <h2>Images</h2>
+        {% for image in project.OtherImages %}
+            <div {{ stimulus_controller("delete_image") }}>
+                <img src="{{ asset('/images/'~image) }}" alt="" width="150">
+                <span class="image-delete" data-src="{{ path('app_project_images_delete', {id: image.id})}}" data-id="{{ project.id }}" data-token="{{ csrf_token('delete' ~ image.id )}}">Delete</span>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

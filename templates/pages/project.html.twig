@@ -10,8 +10,7 @@
             {{ project.content|raw }}
         </div>
         <div class="project-images">
-            <img src="{{ asset("images/"~project.image) }}"  alt="{{ project.image }}"/>
-            {% for img in project.otherImages|split(',') %}
+            {% for img in project.OtherImages %}
                 <img src="{{ asset("images/"~img) }}"  alt="{{ img }}"/>
             {% endfor %}
         </div>

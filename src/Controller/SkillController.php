@@ -106,7 +106,7 @@ class SkillController extends AbstractController
     public function deleteImage(Image $image, Request $request, SkillRepository $skillRepository, ImageRepository $imageRepository): JsonResponse
     {
         $token = $request->get("token");
-        $skillId = $request->get("skillId");
+        $skillId = $request->get("entityId");
         dump($skillId);
 
         if($this->isCsrfTokenValid('delete'.$image->getId(), $token))

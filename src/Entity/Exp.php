@@ -29,7 +29,7 @@ class Exp
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end = null;
 
-    #[ORM\ManyToOne(inversedBy: 'exps')]
+    #[ORM\ManyToOne(targetEntity: ExperienceCategory::class, inversedBy: 'exps')]
     private ?ExperienceCategory $category = null;
 
     public function getId(): ?int
@@ -100,5 +100,10 @@ class Exp
         $this->end = $end;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

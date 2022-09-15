@@ -5,7 +5,7 @@
         <h2>Images</h2>
         {% if skill.icon != null %}
             <div {{ stimulus_controller("delete_image") }}>
-                <img src="{{ asset('/images/'~skill.icon.fileName) }}" alt="" width="150">
+                <img src="{{ asset('/images/'~skill.icon) }}" alt="" width="150">
                 <span class="image-delete" data-src="{{ path('app_skill_icon_delete', {id: skill.icon.id})}}" data-id="{{ skill.id }}" data-token="{{ csrf_token('delete' ~ skill.icon.id )}}">Delete</span>
             </div>
         {% endif %}

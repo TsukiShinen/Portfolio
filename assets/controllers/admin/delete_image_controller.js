@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 export default class extends Controller {
     connect() {
-        $(".image-delete").each(function(i) {
+        $(".image-delete").each(function() {
             console.log( $(this).text())
             $(this).on("click", e => {
                 e.preventDefault()
@@ -14,9 +14,9 @@ export default class extends Controller {
                         url: e.currentTarget.dataset.src,
                         data: {
                             "token": e.currentTarget.dataset.token,
-                            "skillId": e.currentTarget.dataset.id
+                            "entityId": e.currentTarget.dataset.id
                         },
-                        success: function(data) {
+                        success: function() {
                             location.reload();
                         }
                     })
