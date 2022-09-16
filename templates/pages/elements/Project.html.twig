@@ -1,0 +1,16 @@
+<span {{ stimulus_controller("click_project") }}></span>
+{% for project in projects %}
+    <div class="inventory-card" data-id="{{ project.id }}" data-src="{{ url("ajax_main_project") }}">
+        <img class="inventory-card-img" src="{{ asset("images/"~project.otherImages|first) }}"  alt="{{ project.otherImages|first }}"/>
+        <span class="inventory-card-title">{{ project.name }}</span>
+        <span class="inventory-card-category">
+                        {% set categories = [] %}
+            {% for category in project.category %}
+                {{ category.name }}
+            {% endfor %}
+            {% for category in project.relatedSkills %}
+                {{ category.name }}
+            {% endfor %}
+        </span>
+    </div>
+{% endfor %}

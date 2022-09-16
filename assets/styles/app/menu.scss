@@ -1,0 +1,110 @@
+nav {
+  position: fixed;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: flex;
+  z-index: 10;
+
+  i {
+    font-size: 48px;
+  }
+
+  .menu-layer {
+    margin: 8px;
+    align-self: center;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    ul {
+      position: relative;
+      list-style: none;
+      padding: 0;
+    }
+
+    label {
+      width: 100%;
+      text-transform: capitalize;
+
+      .icon {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  }
+
+  .menu-layer-1 {
+    display: block;
+    padding: 8px;
+
+    ul {
+      li {
+        display: flex;
+        text-align: center;
+        vertical-align: middle;
+        width: 80px;
+        height: 80px;
+        border-radius: 64px;
+        padding: 8px;
+        border: 4px solid transparent;
+        background-clip: content-box, padding-box;
+        transition: all .5s;
+        animation-name: slidein;
+
+        label, i {
+          margin: auto;
+        }
+      }
+
+      li:hover, .forced-hover {
+        background-color: $hover-color;
+        border-color: $hover-color;
+      }
+    }
+  }
+
+  .menu-layer-2 {
+    display: none;
+
+    ul {
+      position: relative;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+
+      .arrow {
+        position: absolute;
+        left: -16px;
+        width: 128px;
+        height: 100%;
+        clip-path: polygon(8% 47%, 8% 0, 10% 0, 10% 100%, 8% 100%, 8% 53%, 0% 50%);
+        background-color: $white;
+      }
+
+      li {
+        background-color: rgba($base-color, 0.75);
+        margin: 2px;
+        padding-left: 8px;
+        display: flex;
+
+        label {
+          padding: 12px 0;
+
+          i {
+            width: 32px;
+            height: 32px;
+            font-size: 24px;
+            margin-left: 3px;
+
+            color: white;
+          }
+        }
+      }
+
+      li:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}

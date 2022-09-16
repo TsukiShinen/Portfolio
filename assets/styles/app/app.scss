@@ -1,0 +1,69 @@
+$base-color: rgb(50, 50, 50);
+$hover-color: rgb(71, 142, 214);
+$white: rgb(251, 251, 251);
+
+@import "assets/styles/app/healthBar";
+@import "assets/styles/app/header";
+@import "assets/styles/app/menu";
+@import "assets/styles/app/scrollbar";
+
+// TODO: Regler les probleme de size des elements des pages
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Nova Square', cursive;
+    color: $white;
+    caret-color: transparent;
+}
+
+body {
+    background: #fff url("../../../public/images/BG.jpg") center center/cover no-repeat;
+}
+
+.root {
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    color: $white;
+}
+
+#content {
+    display: none;
+    margin: 16px auto;
+    background-color: $base-color;
+    opacity: 0.90;
+    align-self: center;
+    height: calc(100% - 150px);
+    max-width: 900px;
+    box-shadow: 0 0 8px black;
+
+    .title {
+        text-align: center;
+        box-shadow: 0 16px 48px black;
+        padding: 24px 0;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    .base {
+        margin: 32px 24px;
+        min-height: calc(100% - 156px);
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            color: $white;
+            margin-bottom: 32px;
+        }
+
+        @import "assets/styles/app/skill";
+        @import "assets/styles/app/quest";
+        @import "assets/styles/app/character";
+        @import "assets/styles/app/inventory";
+    }
+}

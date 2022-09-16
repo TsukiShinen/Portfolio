@@ -1,0 +1,52 @@
+.skill {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .active-skill {
+    margin-right: 32px;
+
+    table {
+      border-collapse: collapse;
+
+      tr {
+        border: solid;
+        border-width: 1px 0;
+      }
+
+      tr:first-child {
+        border-top: none;
+      }
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    .skill-icon {
+      display: flex;
+      margin: 10px 10px;
+      cursor: pointer;
+
+      img {
+        width: 48px;
+        height: 48px;
+        padding: 8px;
+        border-radius: 64px;
+        background-color: white;
+      }
+    }
+
+    .first-skill {
+      margin-right: 20px;
+    }
+  }
+
+  .passive-skill {
+    text-align: end;
+  }
+}

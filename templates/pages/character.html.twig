@@ -5,11 +5,31 @@
 {% endblock %}
 
 {% block Base %}
-    <p>Character</p>
-    <p>Character</p>
-    <p>Character</p>
-    <p>Character</p>
-    <p>Character</p>
-    <p>Character</p>
-    <p>Character</p>
+    <div class="character">
+        <div class="character-header">
+            <img class="character-pdp" src="{{ asset('images/pdp.jpg') }}" alt="photo de profil"/>
+            <div class="character-passport">
+                <p class="character-name">Name : Guyon Nolan</p>
+                <p class="character-title">Title : Programmer Gameplay</p>
+            </div>
+        </div>
+        <div class="character-info">
+            <div class="character-coordinate">
+                <p><i class="fa-solid fa-house"></i> Lyon, 69007</p>
+                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@guyon-nolan.fr">contact@guyon-nolan.fr</a></p>
+                <p><i class="fa-solid fa-phone"></i> 06 27 75 72 82</p>
+                <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/nolan-guyon-683b551a3/">LinkedIn</a></p>
+                <p><i class="fa-brands fa-github"></i> <a href="https://github.com/TsukiShinen/Portfolio">Github</a></p>
+            </div>
+            <div class="character-about">
+                <h3>About</h3>
+                <p>
+                    Bonjour, actuellement étudiant en 3ème année au Gaming Campus et passionné par les jeux vidéos. J'adore programmer et le combiner à ma passion est mon rêve. Je suis curieux et j'aime apprendre de nouvelles choses.
+                </p>
+            </div>
+        </div>
+        <div class="cv">
+            <a class="cv-btn" href="{{ asset("CV Nolan Guyon.pdf") }}" download>Télécharger le CV</a>
+        </div>
+    </div>
 {% endblock %}

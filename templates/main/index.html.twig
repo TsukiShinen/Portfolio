@@ -6,22 +6,48 @@
 
     <nav {{ stimulus_controller('menu') }}>
         <div class="menu-layer menu-layer-1" id="menu-layer-1">
-            <input class="menu-btn" type="checkbox" id="btn-menu" data-show="menu-layer-2" data-hide="" data-uncheck=""/>
-            <label for="btn-menu">
-                <i class="fa-solid fa-user"></i>
-            </label>
+            <ul>
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-character" data-content="character" data-src="{{ url('ajax_main_character') }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-character">
+                        <i class="fa-solid fa-user"></i>
+                    </label>
+                </li>
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-menu" data-show="menu-layer-2" data-hide="" data-uncheck=""/>
+                    <label for="btn-menu">
+                        <i class="fa-solid fa-house"></i>
+                    </label>
+                </li>
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-contact" data-content="contact" data-src="{{ url('ajax_main_contact') }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-contact">
+                        <i class="fa-solid fa-envelope"></i>
+                    </label>
+                </li>
+            </ul>
         </div>
         <div class="menu-layer menu-layer-2" id="menu-layer-2">
             <ul>
-                <div class="arrow"></div>
-                {% for page in pages %}
+                <span class="arrow"></span>
                 <li>
-                    <input class="menu-btn" type="checkbox" id="btn-{{ page }}" data-content="{{ page }}" data-src="{{ url('ajax_main_'~page) }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
-                    <label for="btn-{{ page }}">
-                        <p>{{ page }}</p>
+                    <input class="menu-btn" type="checkbox" id="btn-inventory" data-content="inventory" data-src="{{ url('ajax_main_inventory') }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-inventory">
+                        <i class="fa-solid fa-suitcase"></i> inventory
                     </label>
                 </li>
-                {% endfor %}
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-skills" data-content="skills" data-src="{{ url('ajax_main_skills') }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-skills">
+                        <i class="fa-solid fa-check"></i> skills
+                    </label>
+                </li>
+                <li>
+                    <input class="menu-btn" type="checkbox" id="btn-quest" data-content="quest" data-src="{{ url('ajax_main_quest') }}" data-show="content" data-hide="menu-layer-2" data-uncheck="btn-menu"/>
+                    <label for="btn-quest">
+                        <i class="fa-solid fa-book"></i> quest
+                    </label>
+                </li>
             </ul>
         </div>
     </nav>

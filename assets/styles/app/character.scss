@@ -1,0 +1,59 @@
+.character {
+  margin-top: 32px;
+
+  .character-header {
+    display: flex;
+    justify-content: space-evenly;
+
+    .character-pdp {
+      width: 128px;
+      height: 128px;
+      border-radius: 64px;
+    }
+    .character-passport {
+      margin-left: 20px;
+
+      .character-name {
+        margin: 0;
+        font-size: 48px;
+      }
+
+      .character-title {
+        margin: 0;
+        font-size: 32px;
+      }
+    }
+  }
+
+  .character-info {
+    display: flex;
+    margin-top: 48px;
+
+    .character-coordinate {
+      width: 256px;
+      flex-shrink: 0;
+
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .cv {
+    margin-top: 64px;
+    text-align: center;
+
+    .cv-btn {
+      background-color: $white;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 16px;
+      color: black;
+      box-shadow: 0 0 8px black;
+    }
+
+    .cv-btn:hover {
+      background-color: $hover-color;
+    }
+  }
+}
