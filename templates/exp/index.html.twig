@@ -8,9 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>Content</th>
                 <th>IsFinished</th>
                 <th>Start</th>
                 <th>End</th>
@@ -20,9 +18,7 @@
         <tbody>
         {% for exp in exps %}
             <tr>
-                <td>{{ exp.id }}</td>
                 <td>{{ exp.name }}</td>
-                <td>{{ exp.content }}</td>
                 <td>{{ exp.isFinished ? 'Yes' : 'No' }}</td>
                 <td>{{ exp.start ? exp.start|date('Y-m-d') : '' }}</td>
                 <td>{{ exp.end ? exp.end|date('Y-m-d') : '' }}</td>

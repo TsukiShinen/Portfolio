@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +15,6 @@
         <tbody>
         {% for experience_category in experience_categories %}
             <tr>
-                <td>{{ experience_category.id }}</td>
                 <td>{{ experience_category.name }}</td>
                 <td>
                     <a class="edit" href="{{ path('app_experience_category_edit', {'id': experience_category.id}) }}">edit</a>

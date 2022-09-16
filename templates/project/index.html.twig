@@ -8,9 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>Content</th>
                 <th>Date</th>
                 <th>actions</th>
             </tr>
@@ -18,9 +16,7 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td>{{ project.id }}</td>
                 <td>{{ project.name }}</td>
-                <td>{{ project.content }}</td>
                 <td>{{ project.date ? project.date|date('Y-m-d') : '' }}</td>
                 <td>
                     <a class="edit" href="{{ path('app_project_edit', {'id': project.id}) }}">edit</a>

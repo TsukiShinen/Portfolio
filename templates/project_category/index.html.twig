@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +15,6 @@
         <tbody>
         {% for project_category in project_categories %}
             <tr>
-                <td>{{ project_category.id }}</td>
                 <td>{{ project_category.name }}</td>
                 <td>
                     <a class="edit" href="{{ path('app_project_category_edit', {'id': project_category.id}) }}">edit</a>
