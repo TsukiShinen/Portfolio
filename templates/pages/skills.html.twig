@@ -13,13 +13,13 @@
                     <tr>
                         <th>
                             <div class="skill-icon first-skill" data-src="{{ url("ajax_main_inventory") }}" data-value="{{ baseSkill.name }}">
-                                <img alt="{{ baseSkill.name }}" src="{{ asset('images/'~baseSkill.icon) }}" title="{{ baseSkill.name }}">
+                                <img alt="{{ baseSkill.name }}" src="{{ asset('uploads/images/'~baseSkill.icon) }}" title="{{ baseSkill.name }}">
                             </div>
                         </th>
                         <td>
                             {% for skill in skills[baseSkill.name] %}
                                 <div class="skill-icon" data-src="{{ url("ajax_main_inventory") }}" data-value="{{ skill.name }}">
-                                    <img alt="{{ skill.name }}" src="{{ asset('images/'~skill.icon) }}" title="{{ skill.name }}">
+                                    <img alt="{{ skill.name }}" src="{{ asset('uploads/images/'~skill.icon) }}" title="{{ skill.name }}">
                                 </div>
                             {% endfor %}
                         </td>

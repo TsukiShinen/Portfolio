@@ -6,8 +6,12 @@ use App\Repository\SkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
+#[Vich\Uploadable]
 class Skill
 {
     #[ORM\Id]
@@ -18,9 +22,14 @@ class Skill
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: Image::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Image $icon;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $icon = null;
+
+    #[Vich\UploadableField(mapping: 'skill', fileNameProperty: 'icon')]
+    private ?File $iconFile = null;
+
+    #[ORM\Column(type: "datetime")]
+    private ?\DateTime $updatedAt;
 
     #[ORM\Column]
     private ?bool $isPassive = null;
@@ -153,20 +162,46 @@ class Skill
         return $this;
     }
 
-    public function getIcon(): ?Image
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    public function setIcon(?Image $icon): self
+    public function setIcon(string $icon): self
     {
         $this->icon = $icon;
 
         return $this;
     }
 
+    public function getIconFile(): ?File
+    {
+        return $this->iconFile;
+    }
+
+    public function setIconFile(File $iconFile): void
+    {
+        $this->iconFile = $iconFile;
+
+        if ($iconFile instanceof UploadedFile) {
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
+
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

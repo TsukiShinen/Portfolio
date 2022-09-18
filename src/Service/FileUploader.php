@@ -1,7 +1,7 @@
 <?php
 namespace App\Service;
 
-use App\Entity\Image;
+use App\Entity\ProjectImage;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

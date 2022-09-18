@@ -10,8 +10,8 @@
             {{ project.content|raw }}
         </div>
         <div class="project-images">
-            {% for img in project.OtherImages %}
-                <img src="{{ asset("images/"~img) }}"  alt="{{ img }}"/>
+            {% for img in project.images %}
+                <img src="{{ asset("uploads/images/"~img) }}"  alt="{{ img }}"/>
             {% endfor %}
         </div>
     </div>

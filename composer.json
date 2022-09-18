@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
+        "easycorp/easyadmin-bundle": "^4.3",
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "helios-ag/fm-elfinder-bundle": "^12.1",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -47,7 +48,8 @@
         "symfony/webpack-encore-bundle": "^1.15",
         "symfony/yaml": "6.0.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^1.21"
     },
     "config": {
         "allow-plugins": {

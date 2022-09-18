@@ -19,9 +19,8 @@ class Project
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Image::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private Collection $otherImages;
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class, cascade: ["persist"])]
+    private Collection $images;
 
     #[ORM\Column(length: 4096)]
     private ?string $content = null;
@@ -39,7 +38,7 @@ class Project
     {
         $this->category = new ArrayCollection();
         $this->relatedSkills = new ArrayCollection();
-        $this->otherImages = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,24 +130,25 @@ class Project
         return $this;
     }
 
-    public function addOtherImage(Image $otherImage): self
+    public function addImage(ProjectImage $images): self
     {
-        if (!$this->otherImages->contains($otherImage)) {
-            $this->otherImages->add($otherImage);
+        if (!$this->images->contains($images)) {
+            $this->images->add($images);
+            $images->setProject($this);
         }
 
         return $this;
     }
 
 
-    public function getOtherImages(): Collection
+    public function getImages(): Collection
     {
-        return $this->otherImages;
+        return $this->images;
     }
 
-    public function removeOtherImage(Image $otherImage): self
+    public function removeImage(ProjectImage $images): self
     {
-        $this->otherImages->removeElement($otherImage);
+        $this->images->removeElement($images);
 
         return $this;
     }
