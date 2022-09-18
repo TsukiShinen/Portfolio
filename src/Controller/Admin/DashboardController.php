@@ -14,7 +14,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
+use Symfony\Component\Security\Core\User\UserInterface;
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(private AdminUrlGenerator $adminUrlGenerator) {
@@ -66,5 +67,13 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Create a Skill', 'fas fa-plus', Skill::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show a Skill', 'fas fa-eye', Skill::class)
         ]);
+    }
+
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        // Usually it's better to call the parent method because that gives you a
+        // user menu with some menu items already created ("sign out", "exit impersonation", etc.)
+        // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
+        return UserMenu::new();
     }
 }
