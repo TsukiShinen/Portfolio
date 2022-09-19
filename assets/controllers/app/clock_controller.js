@@ -16,7 +16,7 @@ export default class extends Controller {
             let h = date.getHours() < 10 ? "0"+date.getHours() : date.getHours()
             let m = date.getMinutes() < 10 ? "0"+date.getMinutes() : date.getMinutes()
             let s = date.getSeconds() < 10 ? "0"+date.getSeconds() : date.getSeconds()
-            this.element.textContent = h + " : " + m + " : " + s
+            this.element.textContent = h + ":" + m + ":" + s
         }, 1000)
     }
 }

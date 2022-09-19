@@ -2,12 +2,16 @@ $base-color: rgb(50, 50, 50);
 $hover-color: rgb(71, 142, 214);
 $white: rgb(251, 251, 251);
 
+@font-face {
+    font-family: "myFont";
+    src: url("../../../public/fonts/JetBrainsMono-Regular.woff2") format("woff2"), url("../../../public/fonts/JetBrainsMono-Regular.woff")
+    format("woff");
+}
+
 @import "assets/styles/app/healthBar";
 @import "assets/styles/app/header";
 @import "assets/styles/app/menu";
 @import "assets/styles/app/scrollbar";
-
-// TODO: Regler les probleme de size des elements des pages
 
 html, body {
     margin: 0;

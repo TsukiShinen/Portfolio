@@ -66,7 +66,6 @@ class MainController extends AbstractController
 
     #[Route('/skills', name: 'ajax_main_skills', methods: "POST")]
     public function skills(SkillRepository $skillRepository): JsonResponse {
-
         $response = [
             "code" => 200,
             "html" => $this->render('pages/skills.html.twig', [

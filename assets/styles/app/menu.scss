@@ -4,6 +4,7 @@ nav {
   transform: translate(0, -50%);
   display: flex;
   z-index: 10;
+  font-family: 'myFont', 'Nova Square', cursive;
 
   i {
     font-size: 48px;
@@ -71,7 +72,7 @@ nav {
       position: relative;
       list-style: none;
       padding: 0;
-      width: 150px;
+      width: 170px;
 
       .arrow {
         position: absolute;
