@@ -50,6 +50,8 @@ class Skill
     {
         $this->children = new ArrayCollection();
         $this->projects = new ArrayCollection();
+
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public function getId(): ?int
@@ -193,12 +195,12 @@ class Skill
         return $this->name;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

@@ -30,6 +30,11 @@ class ProjectImage
     #[ORM\Column(type: "datetime")]
     private ?\DateTime $updatedAt;
 
+    public function __construct()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
