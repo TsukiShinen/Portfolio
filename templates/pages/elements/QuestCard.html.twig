@@ -12,7 +12,7 @@
         </div>
         <div class="quest-footer">
             {% if quest.end is not null %}
-                <span>{{ quest.start|date("M Y") }} to {{ quest.start|date("M Y") }}</span>
+                <span>{{ quest.start|date("M Y") }} to {{ quest.end|date("M Y") }}</span>
             {% else %}
                 <span>{{ quest.start|date("M Y") }} to Today</span>
             {% endif %}

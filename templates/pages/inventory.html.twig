@@ -1,12 +1,12 @@
 {% extends 'pages/page-base.html.twig' %}
 
 {% block Title %}
-    <h1>Projects</h1>
+    <h1>Inventaire</h1>
 {% endblock %}
 
 {% block Base %}
     <div class="inventory">
-        <div class="inventory-search" {{ stimulus_controller('inventory_search') }}">
+        <div class="inventory-search" {{ stimulus_controller('inventory_search') }}>
             <i class="fa-solid fa-magnifying-glass"></i>
             <label>
                 <input type="text" placeholder="Search ..."  data-src="{{ url("ajax_main_inventory_search") }}" value="{{ search }}"/>
