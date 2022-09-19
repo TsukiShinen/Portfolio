@@ -34,7 +34,7 @@ class MainController extends AbstractController
 
         $projects = null;
         if ($search == "") {
-            $projects = $projectRepository->findAll();
+            $projects = $projectRepository->findBy([], ['date' => 'DESC']);
         } else {
             $projects = $projectRepository->getSearchedProject($search);
         }
@@ -85,7 +85,7 @@ class MainController extends AbstractController
             "code" => 200,
             "html" => $this->render('pages/quest.html.twig', [
                 "currentQuests" => $expRepository->findBy(["isFinished" => false], ["start" => "DESC"]),
-                "finishedQuests" => $expRepository->findBy(["isFinished" => true], ["end" => "ASC"]),
+                "finishedQuests" => $expRepository->findBy(["isFinished" => true], ["end" => "DESC"]),
             ])->getContent()
         ];
 

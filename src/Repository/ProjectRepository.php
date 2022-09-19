@@ -42,10 +42,11 @@ class ProjectRepository extends ServiceEntityRepository
 
     public function getSearchedProject(string $search) {
         return $this->createQueryBuilder('p')
-            ->innerJoin('p.category', 'c')
-            ->innerJoin('p.relatedSkills', 's')
+            ->leftJoin('p.category', 'c')
+            ->leftJoin('p.relatedSkills', 's')
             ->where('p.name LIKE :search OR c.name LIKE :search OR s.name LIKE :search')
             ->setParameter(':search', '%'.$search.'%')
+            ->orderBy("p.date", "DESC")
             ->getQuery()->execute();
     }
 
